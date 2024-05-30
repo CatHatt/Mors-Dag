@@ -2,19 +2,33 @@ const CELL_WIDTH = 50
 const CELL_HEIGHT = 50
 const TIME_STEP_MS = 50
 
-const PATTERN = [
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-    [0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-    [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
-    [1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0],
-    [1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-    [1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-    [1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+const usedPattern = 1
+
+const PATTERNS: string[][] = [
+    [
+        '110000000111',
+        '100000000011',
+        '000110110001',
+        '001111111000',
+        '001111111000',
+        '001111111000',
+        '000111110000',
+        '000011100000',
+        '110001000110',
+        '111000001111',
+        '111000001111',
+        '111000001111',
+    ],
+    [
+        '01010010',
+        '11111000',
+        '11111000',
+        '01110000',
+        '00100101',
+        '10001111',
+        '10001111',
+        '00000111',
+    ],
 ]
 
 let width = Math.round(window.innerWidth / CELL_WIDTH)
@@ -193,10 +207,13 @@ function makeHeart() {
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             console.log(x, y)
-            heartArray[y][x] =
-                PATTERN[y % PATTERN.length][
-                    x % PATTERN[y % PATTERN.length].length
+            heartArray[y][x] = Number(
+                PATTERNS[usedPattern][y % PATTERNS[usedPattern].length][
+                    x %
+                        PATTERNS[usedPattern][y % PATTERNS[usedPattern].length]
+                            .length
                 ]
+            )
         }
     }
 }
